@@ -6,7 +6,7 @@ namespace kata_backpack.tests;
 
 public class BackPackShould
 {
-    private readonly BackPack _backpack = new();
+    private readonly Backpack _backpack = new();
 
     [Fact]
     public void allow_to_store_items()
