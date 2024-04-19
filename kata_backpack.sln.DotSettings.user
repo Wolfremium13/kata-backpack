@@ -1,6 +1,4 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=4722a1b8_002D39ca_002D46c0_002D9ef6_002D5309001e8099/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="BagShould" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;TestAncestor&gt;
-    &lt;TestId&gt;xUnit::79C0F887-12F6-4D0B-9811-AB8AE693C803::net8.0::kata_backpack.tests.BagShould&lt;/TestId&gt;
-  &lt;/TestAncestor&gt;
+  &lt;ProjectFolder&gt;79C0F887-12F6-4D0B-9811-AB8AE693C803/d:tests&lt;/ProjectFolder&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
