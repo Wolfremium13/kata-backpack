@@ -35,6 +35,8 @@ public class BackPackShould
             backpack.Store(phone);
         }
 
-        backpack.Items.Should().HaveCount(maxCapacity).And.Contain(phones);
+        backpack.Items.Should()
+            .HaveCount(maxCapacity)
+            .And.OnlyContain(item => phones.Contains(item));
     }
 }
