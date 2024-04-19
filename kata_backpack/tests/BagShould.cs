@@ -34,4 +34,17 @@ public class BagShould
         bag.Items.Should().Contain(phone).And.Contain(laptop);
     }
     
+    [Fact]
+    public void not_allow_to_store_items_with_different_category()
+    {
+        var bag = new Bag(Category.Electronics);
+        var phone = Item.from("Phone", Category.Electronics);
+        var laptop = Item.from("Laptop", Category.Unknown);
+        
+
+        bag.Store(phone);
+        bag.Store(laptop);
+
+        bag.Items.Should().Contain(phone).And.NotContain(laptop);
+    }
 }
