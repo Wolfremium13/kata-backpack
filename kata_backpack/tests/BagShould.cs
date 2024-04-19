@@ -10,10 +10,14 @@ public class BagShould
     public void allow_to_store_items()
     {
         var bag = new Bag();
-        var item = Item.from("Phone", Category.Unknown);
+        var phone = Item.from("Phone", Category.Unknown);
+        var laptop = Item.from("Laptop", Category.Unknown);
+        
 
-        bag.Store(item);
+        bag.Store(phone);
+        bag.Store(laptop);
 
-        bag.Items.Should().Contain(item);
+        bag.Items.Should().Contain(phone).And.Contain(laptop);
     }
+    
 }
