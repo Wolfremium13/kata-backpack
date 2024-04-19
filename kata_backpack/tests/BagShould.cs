@@ -68,7 +68,8 @@ public class BagShould
 
 
         bag.Items.Should()
-            .Contain(phone)
+            .HaveCount(maxCapacity)
+            .And.Contain(phone)
             .And.Contain(laptop)
             .And.Contain(tablet)
             .And.Contain(camera)
