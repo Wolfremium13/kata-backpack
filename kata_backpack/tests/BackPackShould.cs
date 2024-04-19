@@ -6,12 +6,13 @@ namespace kata_backpack.tests;
 
 public class BackPackShould
 {
+    private readonly BackPack backpack = new();
+    
     [Fact]
     public void allow_to_store_items()
     {
-        var backpack = new BackPack();
-        var phone = Item.from("Phone", Category.Unknown);
-        var laptop = Item.from("Laptop", Category.Unknown);
+        var phone = Item.From("Phone", Category.Unknown);
+        var laptop = Item.From("Laptop", Category.Unknown);
 
         backpack.Store(phone);
         backpack.Store(laptop);
@@ -23,11 +24,10 @@ public class BackPackShould
     public void not_allow_to_store_items_above_max_capacity()
     {
         const int maxCapacity = 8;
-        var backpack = new BackPack();
         var phones = new List<Item>();
         for (var i = 0; i < maxCapacity + 1; i++)
         {
-            phones.Add(Item.from("Phone", Category.Unknown));
+            phones.Add(Item.From("Phone", Category.Unknown));
         }
 
         foreach (var phone in phones)

@@ -11,5 +11,5 @@ public class Item
         Category = category;
     }
 
-    public static Item from(string name, Category category) => new(name, category);
+    public static Item From(string name, Category category) => new(name, category);
 }

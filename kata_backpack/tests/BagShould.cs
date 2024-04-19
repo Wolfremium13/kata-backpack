@@ -10,8 +10,8 @@ public class BagShould
     public void allow_to_store_items()
     {
         var bag = new Bag();
-        var phone = Item.from("Phone", Category.Unknown);
-        var laptop = Item.from("Laptop", Category.Unknown);
+        var phone = Item.From("Phone", Category.Unknown);
+        var laptop = Item.From("Laptop", Category.Unknown);
 
 
         bag.Store(phone);
@@ -24,8 +24,8 @@ public class BagShould
     public void allow_to_store_items_with_the_same_category()
     {
         var bag = new Bag(Category.Electronics);
-        var phone = Item.from("Phone", Category.Electronics);
-        var laptop = Item.from("Laptop", Category.Electronics);
+        var phone = Item.From("Phone", Category.Electronics);
+        var laptop = Item.From("Laptop", Category.Electronics);
 
 
         bag.Store(phone);
@@ -38,8 +38,8 @@ public class BagShould
     public void not_allow_to_store_items_with_different_category()
     {
         var bag = new Bag(Category.Electronics);
-        var phone = Item.from("Phone", Category.Electronics);
-        var laptop = Item.from("Laptop", Category.Unknown);
+        var phone = Item.From("Phone", Category.Electronics);
+        var laptop = Item.From("Laptop", Category.Unknown);
 
 
         bag.Store(phone);
@@ -54,11 +54,11 @@ public class BagShould
         const int maxCapacity = 4;
         var bag = new Bag(Category.Electronics);
 
-        var phone = Item.from("Phone", Category.Electronics);
-        var laptop = Item.from("Laptop", Category.Electronics);
-        var tablet = Item.from("Tablet", Category.Electronics);
-        var camera = Item.from("Camera", Category.Electronics);
-        var watch = Item.from("Watch", Category.Electronics);
+        var phone = Item.From("Phone", Category.Electronics);
+        var laptop = Item.From("Laptop", Category.Electronics);
+        var tablet = Item.From("Tablet", Category.Electronics);
+        var camera = Item.From("Camera", Category.Electronics);
+        var watch = Item.From("Watch", Category.Electronics);
 
         bag.Store(phone);
         bag.Store(laptop);
