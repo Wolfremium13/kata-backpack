@@ -15,3 +15,5 @@
 /kata_backpack/obj/kata_backpack.csproj.nuget.g.targets
 /kata_backpack/obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs
 /.idea/.idea.kata_backpack/.idea/.gitignore
+/kata_backpack/bin
+/kata_backpack/obj
