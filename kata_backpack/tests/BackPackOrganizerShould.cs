@@ -91,4 +91,35 @@ public class BackPackOrganizerShould
             .And.Contain(tablet)
             .And.Contain(camera);
     }
+    
+    [Fact]
+    public void organize_items_in_bags_with_different_categories()
+    {
+        var emptyOrganizer = new BackpackOrganizer(new Backpack(), [new Bag(Category.Electronics), new Bag(Category.Clothes)]);
+        var phone = Item.From("Phone", Category.Electronics);
+        var laptop = Item.From("Laptop", Category.Electronics);
+        var tablet = Item.From("Tablet", Category.Electronics);
+        var camera = Item.From("Camera", Category.Electronics);
+        var cup = Item.From("Cup", Category.Clothes);
+        var backpackOrganizer = emptyOrganizer.Store(phone)
+            .Bind(organizer => organizer.Store(laptop))
+            .Bind(organizer => organizer.Store(tablet))
+            .Bind(organizer => organizer.Store(camera))
+            .Bind(organizer => organizer.Store(cup))
+            .ToSeq()[0];
+
+        var organizedItems = backpackOrganizer.Organize();
+        organizedItems.Backpack.RetrieveAll()
+            .Should()
+            .HaveCount(0);
+        organizedItems.Bags[0].RetrieveAll()
+            .Should()
+            .Contain(phone)
+            .And.Contain(laptop)
+            .And.Contain(tablet)
+            .And.Contain(camera);
+        organizedItems.Bags[1].RetrieveAll()
+            .Should()
+            .Contain(cup);
+    }
 }
