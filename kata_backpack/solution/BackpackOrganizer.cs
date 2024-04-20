@@ -17,17 +17,6 @@ public class BackpackOrganizer
 
     public Either<Error, BackpackOrganizer> Store(Item item)
     {
-        if (!Backpack.IsFull)
-        {
-            Backpack.Store(item);
-            return this;
-        }
-        var availableBag = Bags.FirstOrDefault(bag => bag.Category == item.Category);
-        if (availableBag == null)
-        {
-            return new CannotStoreItem("No available bag to store the item");
-        }
-        availableBag.Store(item);
         return this;
     }
     

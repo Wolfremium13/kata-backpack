@@ -1,15 +1,22 @@
+using kata_backpack.solution.common;
+using LanguageExt;
+
 namespace kata_backpack.solution;
 
 public record Backpack
 {
-    public List<Item> Items { get; } = [];
-    public bool IsFull => Items.Count == MaxCapacity;
+    private List<Item> Items { get; init; } = [];
 
-    private const int MaxCapacity = 8;
-
-    public void Store(Item item)
+    public Either<Error, Backpack> Store(Item item)
     {
-        if (Items.Count < MaxCapacity)
-            Items.Add(item);
+        const int maxCapacity = 8;
+        if (Items.Count == maxCapacity)
+        {
+            return new BackPackIsFullError("Backpack is full");
+        }
+        return this with { Items = Items.Append(item).ToList() };
     }
+    public IEnumerable<Item> RetrieveAll() => Items;
 }
+
+public record BackPackIsFullError(string Message) : Error(Message);
