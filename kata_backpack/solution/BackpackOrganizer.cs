@@ -22,7 +22,7 @@ public class BackpackOrganizer
             Backpack.Store(item);
             return this;
         }
-        var availableBag = Bags.FirstOrDefault(bag => bag.Category == item.Category && !bag.IsFull);
+        var availableBag = Bags.FirstOrDefault(bag => bag.Category == item.Category);
         if (availableBag == null)
         {
             return new CannotStoreItem("No available bag to store the item");

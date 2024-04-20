@@ -34,14 +34,14 @@ public class BackPackOrganizerShould
     public void fill_bag_if_backpack_is_full()
     {
         GivenAFullCapacityBackpack();
-        var tablet = Item.From("Tablet");
+        var item = Item.From("irrelevant");
 
-        _backpackOrganizer.Store(tablet).Match(
+        _backpackOrganizer.Store(item).Match(
             error => error.Should().BeNull(),
             organizer =>
             {
-                var bag = organizer.Bags.FirstOrDefault(bag => bag.Category == Category.Unknown);
-                bag.Items.Should().Contain(tablet);
+                var bag = organizer.Bags[0];
+                bag.RetrieveAll().Should().Contain(item);
             }
         );
     }
