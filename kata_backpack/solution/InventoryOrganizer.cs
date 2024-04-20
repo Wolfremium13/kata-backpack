@@ -3,12 +3,12 @@ using LanguageExt;
 
 namespace kata_backpack.solution;
 
-public class BackpackOrganizer(Backpack backpack, List<Bag> bags)
+public class InventoryOrganizer(Backpack backpack, List<Bag> bags)
 {
     public readonly Backpack Backpack = backpack;
     public readonly List<Bag> Bags = bags;
 
-    public Either<Error, BackpackOrganizer> Store(Item item)
+    public Either<Error, InventoryOrganizer> Store(Item item)
     {
         var maybeBackpackStored = Backpack.Store(item);
         if (maybeBackpackStored.IsLeft)
@@ -22,11 +22,11 @@ public class BackpackOrganizer(Backpack backpack, List<Bag> bags)
             return this;
         }
 
-        var backpack = maybeBackpackStored.ToSeq()[0];
-        return new BackpackOrganizer(backpack, Bags);
+        var newBackpack = maybeBackpackStored.ToSeq()[0];
+        return new InventoryOrganizer(newBackpack, Bags);
     }
 
-    public BackpackOrganizer Organize()
+    public InventoryOrganizer Organize()
     {
         var newBackpack = new Backpack();
         foreach (var item in Backpack.RetrieveAll())
@@ -38,7 +38,7 @@ public class BackpackOrganizer(Backpack backpack, List<Bag> bags)
             }
         }
 
-        return new BackpackOrganizer(newBackpack, Bags);
+        return new InventoryOrganizer(newBackpack, Bags);
     }
 }
 

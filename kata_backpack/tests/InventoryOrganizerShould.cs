@@ -4,15 +4,15 @@ using Xunit;
 
 namespace kata_backpack.tests;
 
-public class BackPackOrganizerShould
+public class InventoryOrganizerShould
 {
     [Fact]
     public void fill_backpack_first_if_it_has_capacity()
     {
-        var backpackOrganizer = new BackpackOrganizer(new Backpack(), []);
+        var emptyOrganizer = new InventoryOrganizer(new Backpack(), []);
         var phone = Item.From("Phone");
 
-        backpackOrganizer.Store(phone).Match(
+        emptyOrganizer.Store(phone).Match(
             error => error.Should().BeNull(),
             organizer => organizer.Backpack.RetrieveAll().Should().Contain(phone)
         );
@@ -21,7 +21,7 @@ public class BackPackOrganizerShould
     [Fact]
     public void fill_next_bag_if_backpack_is_full()
     {
-        var emptyOrganizer = new BackpackOrganizer(new Backpack(), [new Bag()]);
+        var emptyOrganizer = new InventoryOrganizer(new Backpack(), [new Bag()]);
         var aItem = Item.From("Irrelevant");
         var aBagItem = Item.From("Bag item");
 
@@ -43,7 +43,7 @@ public class BackPackOrganizerShould
     [Fact]
     public void not_allow_to_store_items_if_there_are_no_capacity_left()
     {
-        var emptyOrganizer = new BackpackOrganizer(new Backpack(), [new Bag(Category.Clothes)]);
+        var emptyOrganizer = new InventoryOrganizer(new Backpack(), [new Bag(Category.Clothes)]);
         var aItem = Item.From("Irrelevant");
         var phone = Item.From("Phone", Category.Electronics);
 
@@ -65,7 +65,7 @@ public class BackPackOrganizerShould
     [Fact]
     public void organize_items_in_bags_with_same_category()
     {
-        var emptyOrganizer = new BackpackOrganizer(new Backpack(), [new Bag(Category.Electronics)]);
+        var emptyOrganizer = new InventoryOrganizer(new Backpack(), [new Bag(Category.Electronics)]);
         var phone = Item.From("Phone", Category.Electronics);
         var laptop = Item.From("Laptop", Category.Electronics);
         var tablet = Item.From("Tablet", Category.Electronics);
@@ -97,7 +97,7 @@ public class BackPackOrganizerShould
     public void organize_items_in_bags_with_different_categories()
     {
         var emptyOrganizer =
-            new BackpackOrganizer(new Backpack(), [new Bag(Category.Electronics), new Bag(Category.Clothes)]);
+            new InventoryOrganizer(new Backpack(), [new Bag(Category.Electronics), new Bag(Category.Clothes)]);
         var phone = Item.From("Phone", Category.Electronics);
         var laptop = Item.From("Laptop", Category.Electronics);
         var tablet = Item.From("Tablet", Category.Electronics);
