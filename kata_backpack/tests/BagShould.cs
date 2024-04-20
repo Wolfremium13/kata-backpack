@@ -11,8 +11,8 @@ public class BagShould
     [Fact]
     public void allow_to_store_items()
     {
-        var phone = Item.From("Phone", Category.Electronics);
-        var laptop = Item.From("Laptop", Category.Electronics);
+        var phone = Item.From("Phone");
+        var laptop = Item.From("Laptop");
 
 
         _bag.Store(phone);
@@ -38,7 +38,7 @@ public class BagShould
     public void not_allow_to_store_items_with_different_category()
     {     
         var phone = Item.From("Phone", Category.Electronics);
-        var laptop = Item.From("Laptop", Category.Unknown);
+        var laptop = Item.From("Laptop", Category.Clothes);
 
 
         _bag.Store(phone);

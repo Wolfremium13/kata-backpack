@@ -9,7 +9,8 @@ public record Bag(Category Category = Category.Unknown)
 
     public void Store(Item item)
     {
-        if (item.Category == Category && Items.Count < MaxCapacity)
+        var couldFit = (item.Category == Category || item.Category == Category.Unknown);
+        if (couldFit && !IsFull)
         {
             Items.Add(item);
         }
