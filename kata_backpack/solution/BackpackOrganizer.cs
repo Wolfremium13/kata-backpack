@@ -11,10 +11,14 @@ public class BackpackOrganizer(Backpack backpack, List<Bag> bags)
 
     public Either<Error, BackpackOrganizer> Store(Item item)
     {
-        // If backpack does not throw an error, store the item in the backpack if yes raise the error
         var maybeBackpackStored = Backpack.Store(item);
         if (maybeBackpackStored.IsLeft)
         {
+            var maybeBagStored = Bags.Find(bag => bag.Store(item).IsRight);
+            if (maybeBagStored is null)
+            {
+                return new CannotSaveTheItem("Cannot save the item");
+            }
             return this;
         }
 
