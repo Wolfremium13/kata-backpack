@@ -41,7 +41,7 @@ public class BackPackOrganizerShould
     }
 
     [Fact]
-    public void not_allow_to_store_items_if_no_bag_can_store_it()
+    public void not_allow_to_store_items_if_there_are_no_capacity_left()
     {
         var emptyOrganizer = new BackpackOrganizer(new Backpack(), [new Bag(Category.Clothes)]);
         var aItem = Item.From("Irrelevant");
