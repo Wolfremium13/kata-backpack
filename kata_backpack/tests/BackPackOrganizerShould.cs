@@ -79,6 +79,7 @@ public class BackPackOrganizerShould
             .ToSeq()[0];
 
         var organizedItems = backpackOrganizer.Organize();
+
         organizedItems.Backpack.RetrieveAll()
             .Should()
             .HaveCount(1)
@@ -91,11 +92,12 @@ public class BackPackOrganizerShould
             .And.Contain(tablet)
             .And.Contain(camera);
     }
-    
+
     [Fact]
     public void organize_items_in_bags_with_different_categories()
     {
-        var emptyOrganizer = new BackpackOrganizer(new Backpack(), [new Bag(Category.Electronics), new Bag(Category.Clothes)]);
+        var emptyOrganizer =
+            new BackpackOrganizer(new Backpack(), [new Bag(Category.Electronics), new Bag(Category.Clothes)]);
         var phone = Item.From("Phone", Category.Electronics);
         var laptop = Item.From("Laptop", Category.Electronics);
         var tablet = Item.From("Tablet", Category.Electronics);
@@ -109,6 +111,7 @@ public class BackPackOrganizerShould
             .ToSeq()[0];
 
         var organizedItems = backpackOrganizer.Organize();
+
         organizedItems.Backpack.RetrieveAll()
             .Should()
             .HaveCount(0);
