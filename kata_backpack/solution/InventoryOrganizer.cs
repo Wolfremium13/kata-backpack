@@ -10,20 +10,17 @@ public class InventoryOrganizer(Backpack backpack, List<Bag> bags)
 
     public Either<Error, InventoryOrganizer> Store(Item item)
     {
-        var maybeBackpackStored = Backpack.Store(item);
-        if (maybeBackpackStored.IsLeft)
-        {
-            var maybeBagStored = Bags.Find(bag => bag.Store(item).IsRight);
-            if (maybeBagStored is null)
-            {
-                return new CannotSaveTheItem("Cannot save the item");
-            }
-
-            return this;
-        }
-
-        var newBackpack = maybeBackpackStored.ToSeq()[0];
-        return new InventoryOrganizer(newBackpack, Bags);
+        return Backpack.Store(item)
+            .Match<Either<Error, InventoryOrganizer>>(
+                _ =>
+                {
+                    var maybeBagStored = Bags.Find(bag => bag.Store(item).IsRight);
+                    return maybeBagStored is null
+                        ? new CannotSaveTheItem("Cannot save the item")
+                        : new InventoryOrganizer(Backpack, Bags);
+                },
+                backpack => new InventoryOrganizer(backpack, Bags)
+            );
     }
 
     public InventoryOrganizer Organize()
